@@ -1,0 +1,8 @@
+{  "product":{
+    "name": "name",
+    "price": "price",
+    "description":"description",
+    "qtd": 0,
+    "status": true
+   }
+}

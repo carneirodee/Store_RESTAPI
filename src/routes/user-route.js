@@ -2,18 +2,18 @@
 
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/doctor-controller')
+const controller = require('../controllers/user-controller')
 
 router.get('/', controller.get);
 
-router.get('/doctor/:id', controller.getById);
+router.get('/:id', controller.getById);
 
 router.post('/', controller.post);
 
 router.post('/authenticate', controller.authenticate);
 
-router.put('/doctor/:id', controller.put);
+router.put('/:id', controller.put);
 
-router.delete('/doctor/:id', controller.delete);
+router.delete('/:id', controller.delete);
 
 module.exports = router;

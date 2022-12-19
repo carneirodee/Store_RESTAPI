@@ -4,17 +4,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    nome:{
+    name:{
         type: String,
         required: true,
         trim: true
     },
-    senha:{
-        type: String,
-        required: true,
-        trim: true
-    },
-    crm:{
+    password:{
         type: String,
         required: true,
         trim: true
@@ -34,47 +29,31 @@ const schema = new Schema({
         required: true,
         default: true
     },
-    cep:{
+    zipcode:{
         type: String,
         required: true,
         trim: true
     },
-    rua:{
+    address:{
         type: String,
         required: true,
         trim: true
     },
-    complemento:{
+    city:{
         type: String,
         required: true,
         trim: true
     },
-    bairro:{
+    state:{
         type: String,
         required: true,
         trim: true
     },
-    cidade:{
-        type: String,
+    status: {
+        type: Number,
         required: true,
         trim: true
-    },
-    estado:{
-        type: String,
-        required: true,
-        trim: true
-    },
-    operadoras:[{
-        type: String,
-        required: true,
-        trim: true
-    }],
-    prestadores:[{
-        type: String,
-        required: true,
-        trim: true
-    }]
-
+    }
 });
 
-module.exports = mongoose.model('Doctor', schema);
+module.exports = mongoose.model('User', schema);

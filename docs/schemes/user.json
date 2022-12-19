@@ -1,0 +1,13 @@
+ {
+     "user":{
+        "name": "name",
+        "password": "password",
+        "email": "email",
+        "telefone":"telefone",
+        "address": "address",
+        "status":true,
+        "zipcode": "zipcode",
+        "city": "city",
+        "state": "state"
+     }
+}
