@@ -9,6 +9,8 @@ router.get('/:id', controller.getById);
 
 router.get('/', controller.get);
 
+router.get('/user/:id', controller.getByUserId);
+
 router.post('/', controller.post);
 
 router.put('/:id',controller.put);

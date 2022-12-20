@@ -22,10 +22,15 @@ exports.getById = async (req, res, next) => {
     let id = req.params.id
     var data = await repository.getById(id)
     console.log(`user - getById - id[${id}]`)
-    res.status(200).send(data)
-  } catch (e) {
+    if (data !== null) {
+      res.status(200).send(data);
+    } else {
+      res.status(404).send({
+        message: 'Invalid data'
+      })
+    }  } catch (e) {
     res.status(500).send({
-      message: 'Error Request'
+      message: 'Error Request'+e
     })
   }
 }
@@ -37,8 +42,8 @@ exports.post = async (req, res, next) => {
       email: req.body.email,
       telefone: req.body.telefone,
       status: req.body.status,
-      zipcode: req.body.cep,
-      address: req.body.rua,
+      zipcode: req.body.zipcode,
+      address: req.body.address,
       city: req.body.city,
       state: req.body.state,
     })
@@ -46,16 +51,16 @@ exports.post = async (req, res, next) => {
     let sendEmail = await emailService.send(
       req.body.email,
       'Welcome to the store',
-      global.env.EMAIL_TMPL.replace('{0}', req.body.name)
+      "<h1>{0}</h1>".replace('{0}', req.body.name)
     )
     res.status(200).send({
-      message: 'Account Created' + sendEmail
+      message: 'Account Created'
     });
     console.log('user - create');
     console.log('User:', req.body);
   } catch (erro) {
     res.status(500).send({
-      message: 'Error Request'
+      message: 'Error Request'+erro
     })
   }
 }
@@ -64,14 +69,13 @@ exports.authenticate = async (req, res, next) => {
   try {
     const user = await repository.authenticate({
       email: req.body.email,
-      senha: md5(req.body.senha + global.SALT_KEY)
+      password: md5(req.body.password + global.SALT_KEY)
     })
     if (!user) {
-      console.log('user - auth - not_found');
+      console.log('user - auth - not_found'+md5(req.body.password + global.SALT_KEY));
       res.status(404).send({
-        message: 'User or Password not valid'
+        message: 'User or Password not valid'+user
       });
-      return
     }
     console.log(
         `user - auth - email[${req.body.email}] - password[${req.body.password}]`
@@ -98,15 +102,18 @@ exports.authenticate = async (req, res, next) => {
 exports.put = async (req, res, next) => {
   try {
     let id = req.params.id;
-    await repository.put(req.params.id, req.body)
+    let password = md5(req.body.password + global.SALT_KEY)
+    req.body.password = password;
+    let data = req.body
+    await repository.put(id, data)
     res.status(201).send({
-      message: 'User updated'
+      message: 'User updated'+data.password
     });
     console.log(`user - update - id[${id}]`);
     console.log('User:' + req.body);
   } catch (erro) {
     res.status(500).send({
-      message: 'Error Request'
+      message: 'Error Request'+erro
     })
   }
 }

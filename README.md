@@ -1,19 +1,17 @@
-# Salvus_RestAPI
-<p>Aplicação CRUD utilizando o conceito de REST API, a mesma foi solicitada na 2ª Etapa do Processo Seletivo da Salvus Saúde.</p>
+# Store_RESTAPI
 <p>A atividade foi feita com Node.js(Javascript) com banco de dados em MongoDB rodando em um servidor da amazon(aws).</p>
 
 Foram usadas as aplicações:
 <ul>
  <li>Node.js(Javascript)</li>
  <li>MongoDB Atlas</li>
- <li>Postman(testes)</li>
+ <li>Insonmia</li>
 </ul>
 
 As dependências necessárias foram:
  <ul>
  <li>Nodemon</li>
  <li>Body Parser</li>
- <li>Debug</li>
  <li>Express</li>
  <li>JsonWebToken</li>
  <li>MD5</li>

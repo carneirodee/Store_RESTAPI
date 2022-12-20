@@ -23,14 +23,16 @@ exports.put = async(id, data) =>{
    await Cart
     .findByIdAndUpdate(id,{
         $set:{
-            name: data.name,
-            price: data.price,
-            description: data.description,
-            qtd: data.qtd,
-            status: data.status       
+            products: data.products, 
+            total: data.total,
+            userId: data.userId    
         }
     });
 };
+exports.getByUserId = async(userId) =>{
+    const result = await Cart.find({userId});
+    return result;
+ };
 
 exports.del = async (id) =>{
     await Cart

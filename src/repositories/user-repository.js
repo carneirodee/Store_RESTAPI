@@ -38,8 +38,8 @@ exports.put = async(id, data) =>{
             email: data.email,
             telefone: data.telefone,
             status: data.status,
-            zipcode: data.cep,
-            address: data.rua,
+            zipcode: data.zipcode,
+            address: data.address,
             city: data.city,
             state: data.state,
          }

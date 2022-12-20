@@ -24,6 +24,11 @@ const schema = new Schema({
         required: true,
         default: true
     },
+    image: {
+        type: String,
+        required: true,
+        trim: true
+    },
     status:{
         type: Number,
         required: true,

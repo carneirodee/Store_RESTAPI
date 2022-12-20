@@ -17,6 +17,11 @@ const schema = new Schema({
     email:{
         type: String,
         required: true,
+        index: { unique: true, sparse: true }
+    },
+    type:{
+        type: String,
+        required: true,
         trim: true
     },
     telefone:{

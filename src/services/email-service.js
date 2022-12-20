@@ -11,7 +11,7 @@ exports.send = async (to, subject, body) => {
     from: 'deysedayane.o.c@gmail.com', // Change to your verified sender
     subject: subject,
     text: body,
-    html: `<strong>${body}</strong>, seja bem vindo ao teste da 2ª Etapa da Salvus`
+    html: `<strong>${body}</strong>, welcome to the store`
   }
   sgMail
     .send(msg)

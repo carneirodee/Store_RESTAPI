@@ -1,5 +1,5 @@
 {
-  "name": "Salvus_REST_API",
+  "name": "Store",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,12 +11,15 @@
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^7.4.1",
+    "axios": "^1.2.1",
     "body-parser": "^1.19.0",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "form-data": "^4.0.0",
     "http": "0.0.0",
     "jsonwebtoken": "^7.4.0",
+    "kraken": "^0.4.0",
     "md5": "^2.2.1",
     "mongoose": "^5.6.4",
     "sendgrid": "^2.0.0"

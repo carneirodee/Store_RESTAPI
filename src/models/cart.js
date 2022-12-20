@@ -2,15 +2,21 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Product = mongoose.model('Product');
 
 const schema = new Schema({
     products:[{
-        product: new Product()
+        type: String,
+        required: true,
+        trim: true
     }],
+    userId: {
+        type: String,
+        require: true,
+        index: { unique: true, sparse: true }
+    },
     total:{
         type: Number,
-        required: true,
+        required: false,
         trim: true
     },
 });

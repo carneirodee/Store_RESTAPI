@@ -28,14 +28,27 @@ exports.getById = async (req, res, next) => {
   }
 }
 
+exports.getByUserId = async (req, res, next) => {
+  try {
+    let userId = req.params.id;
+    console.log(userId)
+    var data = await repository.getByUserId(userId);
+    console.log(`cart - getByUserId - userId[${userId}]`);
+    console.log(data)
+    res.status(200).send(data);
+  } catch (e) {
+    res.status(500).send({
+      message: 'Error Request'
+    })
+  }
+}
+
 exports.post = async (req, res, next) => {
   try {
     await repository.create({
-      name: req.body.name,
-      price: req.body.price,
-      description: req.body.description,
-      qtd: req.body.qtd,
-      status: req.body.status
+      products: req.body.products,
+      total: req.body.total,
+      userId: req.body.userId
     })
     res.status(201).send({
       message: 'Cart registered'

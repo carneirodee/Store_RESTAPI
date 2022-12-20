@@ -2,6 +2,7 @@
 
 const repository = require('../repositories/product-repository')
 const md5 = require('md5')
+const imageService = require('../services/image-service')
 
 exports.get = async (req, res, next) => {
   try {
@@ -27,7 +28,6 @@ exports.getById = async (req, res, next) => {
         message: 'Invalid data'
       })
     }
-    res.status(200).send(data);
   } catch (erro) {
     res.status(500).send({
       message: 'Error Request' + erro
@@ -36,12 +36,14 @@ exports.getById = async (req, res, next) => {
 }
 
 exports.post = async (req, res, next) => {
+  // let result = await imageService.upload(req.body.image);
   try {
     await repository.create({
       name: req.body.name,
       price: req.body.price,
       description: req.body.description,
       qtd: req.body.qtd,
+      image: '',
       status: req.body.status
     })
     res.status(201).send({
