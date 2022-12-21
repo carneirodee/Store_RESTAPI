@@ -1,19 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "../../../Projects"
-		},
-		{
-			"path": "../../../../Documents/Projects"
-		},
-		{
-			"path": "../../../../Documents/GitHub/deecarneiro.github.io"
+			"path": "../../../Store_Frontend"
 		},
 		{
 			"path": "../.."
-		},
-		{
-			"path": "../../../Store_Frontend"
 		}
 	],
 	"settings": {}

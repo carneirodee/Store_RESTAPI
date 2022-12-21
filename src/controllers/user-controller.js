@@ -4,6 +4,7 @@ const repository = require('../repositories/user-repository')
 const md5 = require('md5')
 const authService = require('../services/auth-service')
 const emailService = require('../services/email-service')
+const { use } = require('../routes/user-route')
 
 exports.get = async (req, res, next) => {
   try {
@@ -82,7 +83,7 @@ exports.login = async (req, res, next) => {
       );
     const token = await authService.generateToken({
       email: user.email,
-      name: user.name
+      name: user.name,
     });
     user.token = token;
     console.log("User:", user)
@@ -91,7 +92,8 @@ exports.login = async (req, res, next) => {
       token: token,
       data: {
         email: user.email,
-        name: user.name
+        name: user.name,
+        id: user.id
       },
       message: 'Success'
     })
