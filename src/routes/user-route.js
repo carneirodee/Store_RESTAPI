@@ -10,6 +10,10 @@ router.get('/:id', controller.getById);
 
 router.post('/', controller.post);
 
+router.post('/login', controller.login);
+
+router.post('/logout', controller.logout);
+
 router.post('/authenticate', controller.authenticate);
 
 router.put('/:id', controller.put);

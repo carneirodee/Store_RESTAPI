@@ -21,7 +21,7 @@ exports.create = async(data) =>{
     await user.save();
 };
 
-exports.authenticate = async(data) =>{
+exports.login = async(data) =>{
     const result = await User.findOne({
         email: data.email,
         password: data.password
@@ -42,6 +42,7 @@ exports.put = async(id, data) =>{
             address: data.address,
             city: data.city,
             state: data.state,
+            token: data.token
          }
      });
  };

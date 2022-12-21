@@ -3,7 +3,7 @@ const app = require('../src/app');
 const debug = require('debug')('balta:server');
 const http = require('http');
 
-const port = normalizarPorta(process.env.PORT || '3000');
+const port = normalizarPorta(process.env.PORT || '8000');
 app.set('port', port);
 
 const server = http.createServer(app);

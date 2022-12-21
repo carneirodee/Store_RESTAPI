@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../.."
+		},
+		{
+			"path": "../../../Store_Frontend"
 		}
 	],
 	"settings": {}

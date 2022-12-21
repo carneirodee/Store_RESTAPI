@@ -65,9 +65,9 @@ exports.post = async (req, res, next) => {
   }
 }
 
-exports.authenticate = async (req, res, next) => {
+exports.login = async (req, res, next) => {
   try {
-    const user = await repository.authenticate({
+    const user = await repository.login({
       email: req.body.email,
       password: md5(req.body.password + global.SALT_KEY)
     })
@@ -83,7 +83,10 @@ exports.authenticate = async (req, res, next) => {
     const token = await authService.generateToken({
       email: user.email,
       name: user.name
-    })
+    });
+    user.token = token;
+    console.log("User:", user)
+    await repository.put(user.id, user);
     res.status(201).send({
       token: token,
       data: {
@@ -95,6 +98,41 @@ exports.authenticate = async (req, res, next) => {
   } catch (erro) {
     res.status(500).send({
       message: 'Error Request'
+    })
+  }
+}
+
+exports.logout = async (req, res, next) => {
+  try {
+    const user = await repository.getById(req.body.id)
+    if (!user) {
+      console.log('user - auth - not_found');
+      res.status(404).send({
+        message: 'User or Password not valid'+user
+      });
+    }
+    user.token = '';
+    await repository.put(user.id, user);
+    res.status(201).send({
+      message: 'Success'
+    })
+  } catch (erro) {
+    res.status(500).send({
+      message: 'Error Request'
+    })
+  }
+}
+
+exports.authenticate =  (req, res, next) => {
+  try {
+    const token = authService.authorize(req, res, next);
+    res.status(201).send({
+      token: token,
+      message: 'Success'
+    })
+  } catch (erro) {
+    res.status(500).send({
+      message: 'Error Request'+erro
     })
   }
 }

@@ -18,7 +18,8 @@ const cartsRoutes = require('./routes/cart-route');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
-
+var cors = require('cors');
+app.use(cors());
 app.use('/', indexRoutes);
 app.use('/products', productsRoutes);
 app.use('/users', usersRoutes);
