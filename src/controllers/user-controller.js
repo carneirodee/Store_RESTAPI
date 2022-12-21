@@ -4,7 +4,6 @@ const repository = require('../repositories/user-repository')
 const md5 = require('md5')
 const authService = require('../services/auth-service')
 const emailService = require('../services/email-service')
-const { use } = require('../routes/user-route')
 
 exports.get = async (req, res, next) => {
   try {
