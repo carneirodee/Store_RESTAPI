@@ -45,6 +45,7 @@ exports.post = async (req, res, next) => {
       zipcode: req.body.zipcode,
       address: req.body.address,
       city: req.body.city,
+      type: req.body.type,
       state: req.body.state,
     })
 
@@ -92,7 +93,8 @@ exports.login = async (req, res, next) => {
       data: {
         email: user.email,
         name: user.name,
-        id: user.id
+        id: user.id,
+        type: user.type
       },
       message: 'Success'
     })
