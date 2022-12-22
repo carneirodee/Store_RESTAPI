@@ -35,7 +35,13 @@ exports.getByUserId = async (req, res, next) => {
     let userId = req.params.id;
     var data = await repository.getByUserId(userId);
     console.log(`cart - getByUserId - userId[${userId}]`);
-    res.status(200).send(data.products);
+    if (!data) {
+      console.log(`cart - getByUserId - userId[\${userId}]`);
+      res.status(404).send({
+        message: 'Not_FOUND'+data
+      });
+    }
+    res.status(200).send(data);
   } catch (e) {
     res.status(500).send({
       message: 'Error Request'
@@ -57,7 +63,7 @@ exports.post = async (req, res, next) => {
     console.log('Cart:', req.body);
   } catch (erro) {
     res.status(500).send({
-      message: 'Error Request'
+      message: 'Error Request'+erro
     })
   }
 }
@@ -73,7 +79,7 @@ exports.put = async (req, res, next) => {
     console.log('Cart:' + req.body);
   } catch (erro) {
     res.status(500).send({
-      message: 'Error Request'
+      message: 'Update: Error Request'+erro+" "+JSON.stringify(req.body)
     })
   }
 }
