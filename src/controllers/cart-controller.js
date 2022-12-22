@@ -1,6 +1,8 @@
 'use strict'
 
 const repository = require('../repositories/cart-repository')
+const repositoryProduct = require('../repositories/product-repository')
+
 const md5 = require('md5')
 
 exports.get = async (req, res, next) => {
@@ -31,11 +33,9 @@ exports.getById = async (req, res, next) => {
 exports.getByUserId = async (req, res, next) => {
   try {
     let userId = req.params.id;
-    console.log(userId)
     var data = await repository.getByUserId(userId);
     console.log(`cart - getByUserId - userId[${userId}]`);
-    console.log(data)
-    res.status(200).send(data);
+    res.status(200).send(data.products);
   } catch (e) {
     res.status(500).send({
       message: 'Error Request'

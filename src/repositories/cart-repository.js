@@ -30,7 +30,7 @@ exports.put = async(id, data) =>{
     });
 };
 exports.getByUserId = async(userId) =>{
-    const result = await Cart.find({userId});
+    const result = await Cart.findOne({userId});
     return result;
  };
 
